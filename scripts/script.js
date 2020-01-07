@@ -1,6 +1,5 @@
 allCanvasBlocks = []
-const width = 16
-const height = 16
+const canvasSize = 16;
 function createCanvasBlock() {
     let canvasBlock = document.createElement("div");
     canvasBlock.textContent = "test";
@@ -9,8 +8,8 @@ function createCanvasBlock() {
 }
 function createCanvas() {
     let canvas = document.getElementById("canvas");
-    for (let i = 0; i < height; ++i) {
-        for (let j = 0; j < width; ++j) {
+    for (let i = 0; i < canvasSize; ++i) {
+        for (let j = 0; j < canvasSize; ++j) {
             let canvasBlock = createCanvasBlock();
             canvas.appendChild(canvasBlock);
             allCanvasBlocks.push(canvasBlock);
