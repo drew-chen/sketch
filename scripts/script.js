@@ -8,13 +8,13 @@ function createCanvasBlock() {
 }
 function createCanvas() {
     let canvas = document.getElementById("canvas");
-    // for (let i = 0; i < CANVAS_SIZE; ++i) {
-    //     for (let j = 0; j < CANVAS_SIZE; ++j) {
-    //         let canvasBlock = createCanvasBlock();
-    //         canvas.appendChild(canvasBlock);
-    //         allCanvasBlocks.push(canvasBlock);
-    //     }
-    // }
+    for (let i = 0; i < CANVAS_SIZE; ++i) {
+        for (let j = 0; j < CANVAS_SIZE; ++j) {
+            let canvasBlock = createCanvasBlock();
+            canvas.appendChild(canvasBlock);
+            allCanvasBlocks.push(canvasBlock);
+        }
+    }
     canvas.style.gridTemplateRows = `repeat(${CANVAS_SIZE}, 1fr)`;
     canvas.style.gridTemplateColumns = `repeat(${CANVAS_SIZE}, 1fr)`;
     return canvas; 
