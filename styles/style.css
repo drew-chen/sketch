@@ -2,14 +2,24 @@
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
 }
-.grid > div {
+.grid > * {
     padding: 1em;
     background-color: pink;
 }
-.grid > div:nth-child(3n+2) {
-    background: white;
+#content {
+    display: grid;
+    grid-template-rows: 1fr 2fr 1fr;
+} 
+header {
+    background-color: grey;
 }
-
+#canvas {
+    height: 400px;
+}
+footer {
+    background-color: white;
+}
 #canvas {
     grid-template-columns: repeat(4, 1fr); 
+    align-self: center;
 }
