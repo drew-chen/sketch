@@ -1,5 +1,7 @@
 .grid {
     display: grid;
+    justify-items: center;
+    align-content: center;
 }
 .grid > * {
     padding: 1em;
@@ -23,6 +25,15 @@ header {
 #canvas {
     grid-row: 2;
     grid-column: 2/3;
+    table-layout: fixed;
+    overflow: visible;
+    width: 400px;
+    height: 400px;
+
+}
+td, tr {
+    margin: 0;
+    padding: 0;
 }
 footer {
     grid-row: 3;
@@ -30,6 +41,7 @@ footer {
 }
 .canvas-box {
     background-color: white;
+
 }
 .grid footer {
     background-color: white;
