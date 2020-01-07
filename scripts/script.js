@@ -1,5 +1,4 @@
 const ALL_BLOCKS = []
-let canvasSize = 10;
 let paintColor = "red";
 let backgroundColor = "white";
 let eraser = false;
@@ -9,12 +8,19 @@ function createCanvasBlock() {
     canvasBlock.classList.add("canvas-box");
     return canvasBlock;
 }
-function resizeCanvas() {
+function removeChildrenById(elementId) {
+    const parent = document.getElementById(elementId)
+    while (parent.firstChild) {
+        parent.removeChild(parent.firstChild)
+    }
+}
+function resizeCanvas(size) {
+    removeChildrenById("canvas");
     let canvas = document.getElementById("canvas");
     let row, canvasBlock;
-    for (let i = 0; i < canvasSize; ++i) {
+    for (let i = 0; i < size; ++i) {
         row = document.createElement("tr");
-        for (let j = 0; j < canvasSize; ++j) {
+        for (let j = 0; j < size; ++j) {
             canvasBlock = createCanvasBlock();
             canvasBlock.style.backgroundColor = backgroundColor;
             row.appendChild(canvasBlock);
@@ -25,7 +31,7 @@ function resizeCanvas() {
     return canvas;
 }
 function createCanvas() {
-    let canvas = resizeCanvas();
+    let canvas = resizeCanvas(10);
     canvas.addEventListener("mousedown", () => isPainting = true);
     canvas.addEventListener("mouseup", () => isPainting = false);
     canvas.addEventListener("mouseleave", () => isPainting = false);
@@ -36,6 +42,12 @@ function paint() {
         this.style.backgroundColor = paintColor;
     }
 }
+function setSettings() {
+    let formCanvasSize = document.getElementById("resolution").value;
+    if (formCanvasSize && !isNaN(formCanvasSize)) {
+        resizeCanvas(formCanvasSize);
+    }
+}
 let canvas = createCanvas();
 document.body.appendChild(canvas);
 if (!eraser) {
@@ -43,5 +55,7 @@ if (!eraser) {
         block.addEventListener("mouseover", paint)
     );
 }
+let settingsButton = document.getElementById("submit");
+settingsButton.onclick = setSettings;
 
 
