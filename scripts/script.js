@@ -1,4 +1,3 @@
-const ALL_BLOCKS = []
 let paintColor = "red";
 let backgroundColor = "white";
 let eraser = false;
@@ -14,7 +13,7 @@ function removeChildrenById(elementId) {
         parent.removeChild(parent.firstChild)
     }
 }
-function resizeCanvas(size) {
+function updateCanvas(size, backgroundColor) {
     removeChildrenById("canvas");
     let canvas = document.getElementById("canvas");
     let row, canvasBlock;
@@ -23,17 +22,17 @@ function resizeCanvas(size) {
         for (let j = 0; j < size; ++j) {
             canvasBlock = createCanvasBlock();
             canvasBlock.style.backgroundColor = backgroundColor;
+            canvasBlock.addEventListener("mouseover", paint)
             row.appendChild(canvasBlock);
-            ALL_BLOCKS.push(canvasBlock);
         }
         canvas.appendChild(row);
-    } 
+    }
     return canvas;
 }
 function createCanvas() {
-    let canvas = resizeCanvas(10);
+    let canvas = updateCanvas(10, "white");
     canvas.addEventListener("mousedown", () => isPainting = true);
-    canvas.addEventListener("mouseup", () => isPainting = false);
+    canvas.addEventListener("click", () => isPainting = false);
     canvas.addEventListener("mouseleave", () => isPainting = false);
     return canvas;
 }
@@ -42,20 +41,29 @@ function paint() {
         this.style.backgroundColor = paintColor;
     }
 }
+function isColor(colorStr) {
+    let tmp = new Option().style;
+    tmp.color = colorStr;
+    return s.color == colorStr;
+}
 function setSettings() {
-    let formCanvasSize = document.getElementById("resolution").value;
-    if (formCanvasSize && !isNaN(formCanvasSize)) {
-        resizeCanvas(formCanvasSize);
+    let canvasSize = document.getElementById("resolution").value;
+    let valid = false;
+    if (!isNaN(canvasSize) && canvasSize >= 2 && canvasSize <= 150) {
+        resizeCanvas(canvasSize);
+        valid = true;
     }
+    let color = document.getElementById("paint-color").value;
+    if (color && isColor(color)) {
+
+        valid = true;
+    }
+    return valid;
 }
 let canvas = createCanvas();
 document.body.appendChild(canvas);
-if (!eraser) {
-    ALL_BLOCKS.forEach(block => 
-        block.addEventListener("mouseover", paint)
-    );
-}
 let settingsButton = document.getElementById("submit");
 settingsButton.onclick = setSettings;
+
 
 
