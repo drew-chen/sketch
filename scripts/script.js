@@ -1,5 +1,8 @@
-allCanvasBlocks = []
-const CANVAS_SIZE = 40;
+const ALL_BLOCKS = []
+let canvasSize = prompt("Enter size");
+const color = prompt("enter color");
+let eraser = false;
+let isPainting = false;
 function createCanvasBlock() {
     let canvasBlock = document.createElement("td");
     canvasBlock.classList.add("canvas-box");
@@ -8,21 +11,31 @@ function createCanvasBlock() {
 function createCanvas() {
     let canvas = document.getElementById("canvas");
     let row, canvasBlock;
-    for (let i = 0; i < CANVAS_SIZE; ++i) {
+    for (let i = 0; i < canvasSize; ++i) {
         row = document.createElement("tr");
-        for (let j = 0; j < CANVAS_SIZE; ++j) {
+        for (let j = 0; j < canvasSize; ++j) {
             canvasBlock = createCanvasBlock();
             row.appendChild(canvasBlock);
-            allCanvasBlocks.push(canvasBlock);
+            ALL_BLOCKS.push(canvasBlock);
         }
         canvas.appendChild(row);
     }
-    // }
-    // canvas.style.gridTemplateRows = `repeat(auto-fit, ${CANVAS_SIZE}, 1fr)`;
-    // canvas.style.gridTemplateColumns = `repeat(auto-fit, ${CANVAS_SIZE}, 1fr)`;
+    canvas.addEventListener("mousedown", () => isPainting = true);
+    canvas.addEventListener("mouseup", () => isPainting = false);
+    canvas.addEventListener("mouseleave", () => isPainting = false);
     return canvas; 
 }
-const CANVAS = createCanvas();
-document.body.appendChild(CANVAS);
+function paint() {
+    if (isPainting) {
+        this.style.backgroundColor = color;
+    }
+}
+const canvas = createCanvas();
+document.body.appendChild(canvas);
+if (!eraser) {
+    ALL_BLOCKS.forEach(block => 
+        block.addEventListener("mouseover", paint)
+    );
+}
 
-  
+
