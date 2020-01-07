@@ -3,7 +3,7 @@ const canvasSize = 16;
 function createCanvasBlock() {
     let canvasBlock = document.createElement("div");
     canvasBlock.textContent = "test";
-    canvasBlock.classList.add("canvas-block");
+    canvasBlock.classList.add("canvas-box");
     return canvasBlock;
 }
 function createCanvas() {

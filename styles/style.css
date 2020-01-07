@@ -1,6 +1,9 @@
+body {
+    text-align: center;
+}
 .grid {
     display: grid;
-    grid-template-columns: 1fr 2fr 1fr;
+    grid-auto-columns: 1fr 2fr 1fr;
 }
 .grid > * {
     padding: 1em;
@@ -8,18 +11,20 @@
 }
 #content {
     display: grid;
-    grid-template-rows: 1fr 2fr 1fr;
+    grid-auto-rows: 1fr 2fr 1fr;
 } 
 header {
     background-color: grey;
 }
 #canvas {
     height: 400px;
+    display: grid;
+    grid-auto-rows: repeat(16, 1fr);
+    grid-auto-columns: repeat(16, 1fr);
+}
+.canvas-box {
+    background-color: white;
 }
 footer {
     background-color: white;
-}
-#canvas {
-    grid-template-columns: repeat(4, 1fr); 
-    align-self: center;
 }
