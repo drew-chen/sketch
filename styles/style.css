@@ -46,9 +46,7 @@ footer {
     background-color: white;
     border: 1px solid black;
 }
-.canvas-box:hover {
-    /* background-color: black; */
-}
+
 .grid footer {
     background-color: white;
 }
