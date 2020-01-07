@@ -1,5 +1,6 @@
 let paintColor = "red";
 let backgroundColor = "white";
+let canvasSize = 10;
 let eraser = false;
 let isPainting = false;
 function createCanvasBlock() {
@@ -13,13 +14,13 @@ function removeChildrenById(elementId) {
         parent.removeChild(parent.firstChild)
     }
 }
-function updateCanvas(size, backgroundColor) {
+function updateCanvas() {
     removeChildrenById("canvas");
     let canvas = document.getElementById("canvas");
     let row, canvasBlock;
-    for (let i = 0; i < size; ++i) {
+    for (let i = 0; i < canvasSize; ++i) {
         row = document.createElement("tr");
-        for (let j = 0; j < size; ++j) {
+        for (let j = 0; j < canvasSize; ++j) {
             canvasBlock = createCanvasBlock();
             canvasBlock.style.backgroundColor = backgroundColor;
             canvasBlock.addEventListener("mouseover", paint)
@@ -30,7 +31,7 @@ function updateCanvas(size, backgroundColor) {
     return canvas;
 }
 function createCanvas() {
-    let canvas = updateCanvas(10, "white");
+    let canvas = updateCanvas();
     canvas.addEventListener("mousedown", () => isPainting = true);
     canvas.addEventListener("click", () => isPainting = false);
     canvas.addEventListener("mouseleave", () => isPainting = false);
@@ -44,18 +45,25 @@ function paint() {
 function isColor(colorStr) {
     let tmp = new Option().style;
     tmp.color = colorStr;
-    return s.color == colorStr;
+    return tmp.color == colorStr;
 }
 function setSettings() {
-    let canvasSize = document.getElementById("resolution").value;
+    let newCanvasSize = document.getElementById("resolution").value;
     let valid = false;
-    if (!isNaN(canvasSize) && canvasSize >= 2 && canvasSize <= 150) {
-        resizeCanvas(canvasSize);
+    if (!isNaN(newCanvasSize) && newCanvasSize >= 2 && newCanvasSize <= 150) {
+        canvasSize = newCanvasSize;
+        updateCanvas();
         valid = true;
     }
-    let color = document.getElementById("paint-color").value;
-    if (color && isColor(color)) {
-
+    let pColor = document.getElementById("paint-color").value;
+    if (pColor && isColor(pColor)) {
+        paintColor = pColor;
+        valid = true;
+    }
+    let bgColor = document.getElementById("bg-color").value;
+    if (bgColor && isColor(bgColor)) {
+        backgroundColor = bgColor;
+        updateCanvas();
         valid = true;
     }
     return valid;
