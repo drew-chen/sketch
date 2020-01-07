@@ -2,7 +2,8 @@ allCanvasBlocks = []
 const width = 16
 const height = 16
 function createCanvasBlock() {
-    let canvasBlock = document.create("div");
+    let canvasBlock = document.createElement("div");
+    canvasBlock.textContent = "test";
     canvasBlock.classList.add("canvas-block");
     return canvasBlock;
 }
@@ -18,6 +19,7 @@ function createCanvas() {
     return canvas; 
 }
 const CANVAS = createCanvas();
-
+document.body.appendChild(CANVAS);
+document.body.appendChild(createCanvasBlock());
 
   
