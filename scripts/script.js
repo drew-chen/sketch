@@ -64,7 +64,10 @@ function isColor(colorStr) {
     tmp.color = colorStr;
     return tmp.color == colorStr;
 }
-/** Set global variables representing to values in settings form. */
+/** 
+ * Set global variables representing to values in settings form. 
+ * If any setting has been changed, returns true. 
+*/
 function setSettings() {
     let newCanvasSize = document.getElementById("resolution").value;
     let valid = false;
@@ -77,29 +80,39 @@ function setSettings() {
         paintColor = newPColor;
         valid = true;
     }
-    let newBgColor = document.getElementById("bg-color").value;
+    let newBgColor = document.getElementById("background-color").value;
     if (newBgColor && isColor(newBgColor)) {
         backgroundColor = newBgColor;
         valid = true;
     }
-    if (valid) {
-        updatePreview();
-    }
     return valid;
 }
+/** Preview colors of settings. */
 function updatePreview() {
+    setSettings();
+    let paintPreview = document.getElementById("paint-preview");
+    let backgroundPreview = document.getElementById("background-preview");
+    console.log("pcolor " + paintColor + " bg color " + backgroundColor);
     paintPreview.style.backgroundColor = paintColor;
     backgroundPreview.style.backgroundColor = backgroundColor;
 }
+/** Set up previews and forms. Previews are updated live with input. */
+function createSettings() {
+    console.log("create settings");
+    let paintColorInput = document.getElementById("paint-color");
+    let backgroundColorInput = document.getElementById("background-color");
+    paintColorInput.onkeyup = updatePreview;
+    paintColorInput.onkeypress = updatePreview;
+    backgroundColorInput.onkeyup = updatePreview
+    backgroundColorInput.onkeypress = updatePreview;
+}
 let canvas = createCanvas();
+createSettings();
 document.body.appendChild(canvas);
-let settingsButton = document.getElementById("submit");
-settingsButton.onclick = updateCanvas;
-settingsButton.onkeyup = settingsButton.onkeydown = setSettings;
+let submitSettingsBtn = document.getElementById("submit");
+submitSettingsBtn.onclick = updateCanvas;
 
-let paintPreview = document.getElementById("paint-preview");
-let backgroundPreview = document.getElementById("background-preview");
-paintPreview.onkeyup = paintPreview.onkeydown = updatePreview;
-backgroundPreview.onkeyup = backgroundPreview.onkeyup = updatePreview;
+
+
 
 
