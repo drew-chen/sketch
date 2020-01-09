@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <title>Sketch</title>
     <link rel="stylesheet" href="styles/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap" 
+    rel="stylesheet">
 </head>
 <body class="grid">
     <header>
@@ -18,7 +20,7 @@
                 <button id="select-erase" class="btn">Erase</button>
             </div>
             <form id="paint-form">
-                <p>Paint color</p>
+                <h2>Paint color</h2>
 
                 <div id="paint-preview" class="color-preview"></div>
                 <input type="text" id="paint-color" placeholder="red">
@@ -26,19 +28,15 @@
         </div>
         <div>
             <form id="canvas-form">
-                <p>
-                    Length of canvas<br>
-                    (between 2 and 150)
-                </p>
+                <h2>Length of canvas</h2>
                 <input type="number" id="resolution" placeholder="10">
-                <p>Background color</p>
+                <h2>Background color</h2>
                 <div id="background-preview" class="color-preview"></div>
                 <input type="text" id="background-color" placeholder="white">
                 <input type="button" id="submit" class="btn">
             </form>
         </div>
     </div>
-
     <table id="canvas"></table>
     <footer>footer</footer>
 </body>
