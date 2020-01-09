@@ -38,6 +38,7 @@ footer {
     grid-row: 3;
     grid-column: 1/4;
 }
+
 .grid header {
     background-color: grey;
 }
@@ -47,9 +48,12 @@ footer {
     background-color: white;
 }
 
+.btn {
+    margin: 1em;
+}
+
 #select-buttons {
-    padding-top: 2em;
-    grid-gap: 1em;
+    padding-top: 1em;
 }
 .color-preview {
     width: 10em;
