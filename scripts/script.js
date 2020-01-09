@@ -72,6 +72,11 @@ let canvas = createCanvas();
 document.body.appendChild(canvas);
 let settingsButton = document.getElementById("submit");
 settingsButton.onclick = setSettings;
+let paintPreview = document.getElementById("paint-preview");
+paintPreview.style.backgroundColor = paintColor;
+let backgroundPreview = document.getElementById("background-preview");
+backgroundPreview.style.backgroundColor = backgroundColor;
+
 
 
 
