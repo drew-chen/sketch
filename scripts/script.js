@@ -3,11 +3,20 @@ let backgroundColor = "white";
 let canvasSize = 10;
 let eraser = false;
 let isPainting = false;
+
+/**
+ * Constructs a paintable block.
+ */
 function createCanvasBlock() {
     let canvasBlock = document.createElement("td");
     canvasBlock.classList.add("canvas-box");
     return canvasBlock;
 }
+/**
+ * Removes all children elements from a given element.
+ * 
+ * @param {string} elementId The name of the element.
+ */
 function removeChildrenById(elementId) {
     const parent = document.getElementById(elementId)
     while (parent.firstChild) {
@@ -31,6 +40,7 @@ function updateCanvas() {
     }
     return canvas;
 }
+/** Sets up the canvas' event listeners for the first time. */
 function createCanvas() {
     let canvas = updateCanvas();
     canvas.addEventListener("mousedown", () => isPainting = true);
@@ -38,11 +48,17 @@ function createCanvas() {
     canvas.addEventListener("mouseleave", () => isPainting = false);
     return canvas;
 }
+/** Paints a canvas box. */
 function paint() {
     if (isPainting) {
         this.style.backgroundColor = paintColor;
     }
 }
+/**
+ * Returns whether the given color is a valid color in CSS.
+ * 
+ * @param {string} colorStr The CSS color value.
+ */
 function isColor(colorStr) {
     let tmp = new Option().style;
     tmp.color = colorStr;
@@ -56,14 +72,14 @@ function setSettings() {
         canvasSize = newCanvasSize;
         valid = true;
     }
-    let pColor = document.getElementById("paint-color").value;
-    if (pColor && isColor(pColor)) {
-        paintColor = pColor;
+    let newPColor = document.getElementById("paint-color").value;
+    if (newPColor && isColor(newPColor)) {
+        paintColor = newPColor;
         valid = true;
     }
-    let bgColor = document.getElementById("bg-color").value;
-    if (bgColor && isColor(bgColor)) {
-        backgroundColor = bgColor;
+    let newBgColor = document.getElementById("bg-color").value;
+    if (newBgColor && isColor(newBgColor)) {
+        backgroundColor = newBgColor;
         valid = true;
     }
     if (valid) {
