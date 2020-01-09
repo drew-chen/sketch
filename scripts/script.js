@@ -48,10 +48,14 @@ function createCanvas() {
     canvas.addEventListener("mouseleave", () => isPainting = false);
     return canvas;
 }
-/** Paints a canvas box. */
+/** Paints or erases a canvas box. */
 function paint() {
     if (isPainting) {
-        this.style.backgroundColor = paintColor;
+        if (eraser) {
+            this.style.backgroundColor = backgroundColor;
+        } else {
+            this.style.backgroundColor = paintColor;
+        }
     }
 }
 /**
@@ -98,20 +102,31 @@ function updatePreview() {
 }
 /** Set up previews and forms. Previews are updated live with input. */
 function createSettings() {
-    console.log("create settings");
     let paintColorInput = document.getElementById("paint-color");
     let backgroundColorInput = document.getElementById("background-color");
     paintColorInput.onkeyup = updatePreview;
     paintColorInput.onkeypress = updatePreview;
     backgroundColorInput.onkeyup = updatePreview
     backgroundColorInput.onkeypress = updatePreview;
+    let paintForm = document.getElementById("paint-form");
+    paintForm.onsubmit = () => false;
+}
+function selectPaintButton() {
+    eraser = false;
+}
+function selectEraseButton() {
+    eraser = true;
 }
 let canvas = createCanvas();
 createSettings();
+updatePreview();
 document.body.appendChild(canvas);
 let submitSettingsBtn = document.getElementById("submit");
 submitSettingsBtn.onclick = updateCanvas;
-
+let paintBtn = document.getElementById("select-paint");
+paintBtn.onclick = selectPaintButton;
+let eraserBtn = document.getElementById("select-erase");
+eraserBtn.onclick = selectEraseButton;
 
 
 

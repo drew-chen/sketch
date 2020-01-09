@@ -12,13 +12,17 @@
         </h1>
     </header>
     <div>
-        <form id="settings">
-            <p>Length of canvas (between 2 and 150)</p>
-            <input type="number" id="resolution" placeholder="10">
+        <button id="select-paint">Paint</button>
+        <button id="select-erase">Erase</button>
+        <form id="paint-form">
             <p>Paint color</p>
+
             <div id="paint-preview" class="color-preview"></div>
             <input type="text" id="paint-color" placeholder="red">
-
+        </form>
+        <form>
+            <p>Length of canvas (between 2 and 150)</p>
+            <input type="number" id="resolution" placeholder="10">
             <p>Background color</p>
             <div id="background-preview" class="color-preview"></div>
             <input type="text" id="background-color" placeholder="white">
