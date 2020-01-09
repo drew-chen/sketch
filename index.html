@@ -11,24 +11,31 @@
             Sketch and Paint
         </h1>
     </header>
-    <div>
-        <button id="select-paint">Paint</button>
-        <button id="select-erase">Erase</button>
-        <form id="paint-form">
-            <p>Paint color</p>
+    <div id="settings" class="grid">
+        <div>
+            <div id="select-buttons" class="grid">
+                <button id="select-paint">Paint</button>
+                <button id="select-erase">Erase</button>
+            </div>
+            <form id="paint-form">
+                <p>Paint color</p>
 
-            <div id="paint-preview" class="color-preview"></div>
-            <input type="text" id="paint-color" placeholder="red">
-        </form>
-        <form>
-            <p>Length of canvas (between 2 and 150)</p>
-            <input type="number" id="resolution" placeholder="10">
-            <p>Background color</p>
-            <div id="background-preview" class="color-preview"></div>
-            <input type="text" id="background-color" placeholder="white">
-            <input type="button" id="submit">
-        </form>
+                <div id="paint-preview" class="color-preview"></div>
+                <input type="text" id="paint-color" placeholder="red">
+            </form>
+        </div>
+        <div>
+            <form id="canvas-form">
+                <p>Length of canvas (between 2 and 150)</p>
+                <input type="number" id="resolution" placeholder="10">
+                <p>Background color</p>
+                <div id="background-preview" class="color-preview"></div>
+                <input type="text" id="background-color" placeholder="white">
+                <input type="button" id="submit">
+            </form>
+        </div>
     </div>
+
     <table id="canvas"></table>
     <footer>footer</footer>
 </body>

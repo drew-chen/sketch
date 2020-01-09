@@ -22,6 +22,20 @@ header {
 .grid header {
     background-color: grey;
 }
+#settings {
+    grid-gap: 1em;
+    justify-items: stretch;
+    background-color: white;
+}
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+#select-buttons {
+    padding-top: 2em;
+    grid-gap: 1em;
+}
 .color-preview {
     height: 2em;
     margin: 1em;
