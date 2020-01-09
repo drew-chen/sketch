@@ -14,6 +14,7 @@ function removeChildrenById(elementId) {
         parent.removeChild(parent.firstChild)
     }
 }
+/** Updates canvas to match configuration according to settings. */
 function updateCanvas() {
     removeChildrenById("canvas");
     let canvas = document.getElementById("canvas");
@@ -47,12 +48,12 @@ function isColor(colorStr) {
     tmp.color = colorStr;
     return tmp.color == colorStr;
 }
+/** Set global variables representing to values in settings form. */
 function setSettings() {
     let newCanvasSize = document.getElementById("resolution").value;
     let valid = false;
     if (!isNaN(newCanvasSize) && newCanvasSize >= 2 && newCanvasSize <= 150) {
         canvasSize = newCanvasSize;
-        updateCanvas();
         valid = true;
     }
     let pColor = document.getElementById("paint-color").value;
@@ -63,20 +64,26 @@ function setSettings() {
     let bgColor = document.getElementById("bg-color").value;
     if (bgColor && isColor(bgColor)) {
         backgroundColor = bgColor;
-        updateCanvas();
         valid = true;
     }
+    if (valid) {
+        updatePreview();
+    }
     return valid;
+}
+function updatePreview() {
+    paintPreview.style.backgroundColor = paintColor;
+    backgroundPreview.style.backgroundColor = backgroundColor;
 }
 let canvas = createCanvas();
 document.body.appendChild(canvas);
 let settingsButton = document.getElementById("submit");
-settingsButton.onclick = setSettings;
+settingsButton.onclick = updateCanvas;
+settingsButton.onkeyup = settingsButton.onkeydown = setSettings;
+
 let paintPreview = document.getElementById("paint-preview");
-paintPreview.style.backgroundColor = paintColor;
 let backgroundPreview = document.getElementById("background-preview");
-backgroundPreview.style.backgroundColor = backgroundColor;
-
-
+paintPreview.onkeyup = paintPreview.onkeydown = updatePreview;
+backgroundPreview.onkeyup = backgroundPreview.onkeyup = updatePreview;
 
 
