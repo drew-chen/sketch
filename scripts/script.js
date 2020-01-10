@@ -9,7 +9,6 @@ let isPainting = false;
  */
 function createCanvasBlock() {
     let canvasBlock = document.createElement("td");
-    canvasBlock.classList.add("canvas-box");
     return canvasBlock;
 }
 /**
@@ -110,11 +109,20 @@ function createSettings() {
     let paintForm = document.getElementById("paint-form");
     paintForm.onsubmit = () => false;
 }
-function selectPaintButton() {
-    eraser = false;
+
+function selectPaintButton(eraserBtn) {
+    return function () {
+        eraser = false;
+        this.classList.add("selected");
+        eraserBtn.classList.remove("selected");
+    };
 }
-function selectEraseButton() {
-    eraser = true;
+function selectEraseButton(paintBtn) {
+    return function () {
+        eraser = true;
+        this.classList.add("selected");
+        paintBtn.classList.remove("selected");
+    };
 }
 function submitSettings() {
     setSettings();
@@ -124,12 +132,12 @@ let canvas = createCanvas();
 createSettings();
 updatePreview();
 document.body.appendChild(canvas);
-let submitSettingsBtn = document.getElementById("submit");
-submitSettingsBtn.onclick = submitSettings;
-let paintBtn = document.getElementById("select-paint");
-paintBtn.onclick = selectPaintButton;
-let eraserBtn = document.getElementById("select-erase");
-eraserBtn.onclick = selectEraseButton;
+let submitSettingsButton = document.getElementById("submit");
+submitSettingsButton.onclick = submitSettings;
+let paintButton = document.getElementById("select-paint");
+let eraserButton = document.getElementById("select-erase");
+paintButton.onclick = selectPaintButton(eraserButton);
+eraserButton.onclick = selectEraseButton(paintButton);
 
 
 
