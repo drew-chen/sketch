@@ -96,7 +96,6 @@ function updatePreview() {
     setSettings();
     let paintPreview = document.getElementById("paint-preview");
     let backgroundPreview = document.getElementById("background-preview");
-    console.log("pcolor " + paintColor + " bg color " + backgroundColor);
     paintPreview.style.backgroundColor = paintColor;
     backgroundPreview.style.backgroundColor = backgroundColor;
 }
@@ -117,12 +116,16 @@ function selectPaintButton() {
 function selectEraseButton() {
     eraser = true;
 }
+function submitSettings() {
+    setSettings();
+    updateCanvas();
+}
 let canvas = createCanvas();
 createSettings();
 updatePreview();
 document.body.appendChild(canvas);
 let submitSettingsBtn = document.getElementById("submit");
-submitSettingsBtn.onclick = updateCanvas;
+submitSettingsBtn.onclick = submitSettings;
 let paintBtn = document.getElementById("select-paint");
 paintBtn.onclick = selectPaintButton;
 let eraserBtn = document.getElementById("select-erase");
