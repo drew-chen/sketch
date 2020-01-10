@@ -109,7 +109,11 @@ function createSettings() {
     let paintForm = document.getElementById("paint-form");
     paintForm.onsubmit = () => false;
 }
-
+/**
+ * Turns off eraser and sets only the paint button as selected.
+ * 
+ * @param {object} eraserBtn The eraser button to be unselected.
+ */
 function selectPaintButton(eraserBtn) {
     return function () {
         eraser = false;
@@ -117,6 +121,11 @@ function selectPaintButton(eraserBtn) {
         eraserBtn.classList.remove("selected");
     };
 }
+/**
+ * Turns on the eraser and sets only the eraser button as selected.
+ * 
+ * @param {object} paintBtn The paint button to be unselected.
+ */
 function selectEraseButton(paintBtn) {
     return function () {
         eraser = true;
@@ -128,6 +137,13 @@ function submitSettings() {
     setSettings();
     updateCanvas();
 }
+/** Open the canvas as a .png file in another tab. */
+function save() {
+    html2canvas(canvas).then(function(canvas) {
+        let base64image = canvas.toDataURL("image/png");
+        window.open(base64image , "_blank");
+    });   
+}
 let canvas = createCanvas();
 createSettings();
 updatePreview();
@@ -138,7 +154,6 @@ let paintButton = document.getElementById("select-paint");
 let eraserButton = document.getElementById("select-erase");
 paintButton.onclick = selectPaintButton(eraserButton);
 eraserButton.onclick = selectEraseButton(paintButton);
-
-
-
+let saveButton = document.getElementById("save");
+saveButton.onclick = save;
 
