@@ -94,6 +94,28 @@ function paint() {
         }
     }
 }
+/**
+ * Returns whether the given color is a valid color in CSS.
+ * 
+ * @param {string} colorStr The CSS color value.
+ */
+function isColor(colorStr) {
+    if (colorStr === "") { return false; }
+    if (colorStr === "inherit") { return false; }
+    if (colorStr === "transparent") { return false; }
+    let valid = false;
+    valid = valid || colorStr.localeCompare("rainbow") == 0;
+    let tmp = new Option().style;
+    tmp.color = colorStr;
+    valid = valid || tmp.color == colorStr;
+    let hexPattern = new RegExp("^#(?:[0-9a-fA-F]{3}){1,2}$");
+    valid = valid || hexPattern.test(colorStr);
+    let rgbPattern = new RegExp("^(rgb)?\(?([01]?\d\d?|2[0-4]\d|25[0-5])(\W+)"
+        + "([01]?\d\d?|2[0-4]\d|25[0-5])\W+(([01]?\d\d?|2[0-4]\d|25[0-5])\)?)$");
+    valid = valid || rgbPattern.test(colorStr);
+    return true;
+
+}
 /** Set global variables representing to values in settings form. */
 function setSettings() {
     let newCanvasSize = document.getElementById("resolution").value;
@@ -116,13 +138,13 @@ function updatePreview() {
     let backgroundPreview = document.getElementById("background-preview");
     if (paintColor.localeCompare("rainbow") == 0) {
         paintPreview.classList.add("rainbow");
-    } else {
+    } else if (isColor(paintColor)) {
         paintPreview.classList.remove("rainbow");
         paintPreview.style.backgroundColor = paintColor;
     }
     if (backgroundColor.localeCompare("rainbow") == 0) {
         backgroundPreview.classList.add("rainbow");
-    } else {
+    } else if (isColor(backgroundColor)) {
         backgroundPreview.classList.remove("rainbow");
         backgroundPreview.style.backgroundColor = backgroundColor;
     }
