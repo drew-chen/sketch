@@ -60,7 +60,11 @@ function getRandomColor() {
 function paint() {
     if (isPainting) {
         if (eraser) {
-            this.style.backgroundColor = backgroundColor;
+            if (paintColor.localeCompare("rainbow") == 0) {
+                this.classList.add("rainbow");
+            } else {
+                this.style.backgroundColor = backgroundColor;
+            }
         } else {
             this.classList.remove("rainbow");
             if (paintColor.localeCompare("rainbow") == 0) {
