@@ -99,22 +99,66 @@ function paint() {
  * 
  * @param {string} colorStr The CSS color value.
  */
-function isColor(colorStr) {
-    if (colorStr === "") { return false; }
-    if (colorStr === "inherit") { return false; }
-    if (colorStr === "transparent") { return false; }
-    let valid = false;
-    valid = valid || colorStr.localeCompare("rainbow") == 0;
+function validateColor(colorStr) {
+    if (colorStr === "") { 
+        return false; 
+    }
+    if (colorStr === "inherit") { 
+        return false; 
+    }
+    if (colorStr === "transparent") { 
+        return false; 
+    }
+    if (colorStr === "rainbow") { 
+        return true; 
+    }
     let tmp = new Option().style;
     tmp.color = colorStr;
-    valid = valid || tmp.color == colorStr;
-    let hexPattern = new RegExp("^#(?:[0-9a-fA-F]{3}){1,2}$");
-    valid = valid || hexPattern.test(colorStr);
-    let rgbPattern = new RegExp("^(rgb)?\(?([01]?\d\d?|2[0-4]\d|25[0-5])(\W+)"
-        + "([01]?\d\d?|2[0-4]\d|25[0-5])\W+(([01]?\d\d?|2[0-4]\d|25[0-5])\)?)$");
-    valid = valid || rgbPattern.test(colorStr);
-    return true;
-
+    if (tmp.color == colorStr) { 
+        return true; 
+    }
+    if (/^#(?:[0-9a-fA-F]{3}){1,2}$/.test(colorStr)) {
+        return true;
+    }
+    let rgbMatch = colorStr.match(/\d+/);
+    let isRgb = false;
+    if (rgbMatch && rgbMatch.length == 3) {
+        isRgb = true;
+        for (let colorNum of rgbMatch) {
+            if (colorNum > 255 || color < 0) {
+                isRgb = false;
+            }
+        }
+    }  
+    return isRgb;
+}
+/**
+ * Helper function for setSettings() that updates either background color or
+ * paint color.
+ * 
+ * @param {boolean} isBackground Updates background color if true. Updates paint
+ *                             color otherwise.
+ */
+function updateColorSetting(isBackground) {
+    let colorSettingId;
+    if (isBackground) {
+        colorSettingId = "background-color";
+    } else {
+        colorSettingId = "paint-color";
+    }
+    let input = document.getElementById(colorSettingId)
+    let newColor = input.value;
+    newColor = newColor.replace(/\s+/g, '');
+    if (newColor && validateColor(newColor)) {
+        if (isBackground) {
+            backgroundColor = newColor;
+        } else {
+            paintColor = newColor;
+        }
+        input.style.borderColor = "inherit";
+    } else {
+        input.style.borderColor = "tomato";
+    }
 }
 /** Set global variables representing to values in settings form. */
 function setSettings() {
@@ -122,14 +166,8 @@ function setSettings() {
     if (!isNaN(newCanvasSize) && newCanvasSize >= 2 && newCanvasSize <= 150) {
         canvasSize = newCanvasSize;
     }
-    let newPColor = document.getElementById("paint-color").value;
-    if (newPColor) {
-        paintColor = newPColor;
-    }
-    let newBgColor = document.getElementById("background-color").value;
-    if (newBgColor) {
-        backgroundColor = newBgColor;
-    }
+    updateColorSetting(true);
+    updateColorSetting(false);
 }
 /** Preview colors of settings. */
 function updatePreview() {
@@ -138,13 +176,13 @@ function updatePreview() {
     let backgroundPreview = document.getElementById("background-preview");
     if (paintColor.localeCompare("rainbow") == 0) {
         paintPreview.classList.add("rainbow");
-    } else if (isColor(paintColor)) {
+    } else {
         paintPreview.classList.remove("rainbow");
         paintPreview.style.backgroundColor = paintColor;
     }
     if (backgroundColor.localeCompare("rainbow") == 0) {
         backgroundPreview.classList.add("rainbow");
-    } else if (isColor(backgroundColor)) {
+    } else {
         backgroundPreview.classList.remove("rainbow");
         backgroundPreview.style.backgroundColor = backgroundColor;
     }
