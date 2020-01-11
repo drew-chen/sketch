@@ -17,6 +17,7 @@
     </header>
     <div id="settings" class="grid">
         <div class="shadow">
+            <h2>Paint</h2>
             <div id="select-buttons" class="grid">
                 <!-- The paint button is selected by default. -->
                 <button id="select-pen" class="btn paint selected shadow">pen</button>
@@ -25,28 +26,36 @@
             </div>
             <form id="paint-form">
                 <div id="paint-preview" class="color-preview"></div>
-                <label>paint color</label>
+                <label>color</label>
                 <input type="text" id="paint-color" placeholder="CSS color value">
-                <small>ex) rainbow, pink, #ADD8E6</small>
             </form>
         </div>
         <div class="shadow">
+            <h2>Canvas</h2>
             <form id="canvas-form">
-                <label>canvas size</label>
+                <label>size</label>
                 <input type="number" id="resolution" 
                 placeholder="number between 2 and 150">
                 <div id="background-preview" class="color-preview"></div>
-                <label>background color</label>
+                <label>color</label>
                 <input type="text" id="background-color" 
                 placeholder="CSS color value">
-                <small>ex) #000, rgb(1,80,99), ivory</small>
                 <input type="button" id="submit" class="btn shadow" value="set canvas">
             </form>
         </div>
     </div>
     <table id="canvas" class="shadow"></table>
     <!-- todo -->
-    <div class="shadow">Instructions</div>
+    <div id="instructions" class="shadow">
+        <h2>Instructions</h2>
+        <small>Color Examples:</small>
+        <ul>
+            <li>rainbow</li>
+            <li>pink, #ADD8E6</li>
+            <li>#000, rgb(1,80,99), ivory</li>
+        </ul>
+    </div>
+
     <footer>
         <button id="save" class="btn shadow">save as png</button>
     </footer>

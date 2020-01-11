@@ -26,6 +26,9 @@ form {
     align-items: center;
 }
 
+h2 {
+    font-size: 1em;
+}
 input {
     font-family: 'Roboto', sans-serif;
     width: 15em;
@@ -65,11 +68,14 @@ small {
     justify-self: right;
     margin: 10px;
 }
-#settings > div {
+#settings > div, #instructions {
     background: white;
     border-radius: 8px;
 }
-
+#instructions {
+    justify-self: left;
+    margin: 26px;
+}
 .btn {
     font-family: 'Roboto', sans-serif;
     margin: 1em;
