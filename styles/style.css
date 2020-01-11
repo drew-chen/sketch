@@ -67,7 +67,7 @@ small {
     margin: 10px;
 }
 #settings > div {
-    background: #fefefe;
+    background: white;
     border-radius: 5px;
 }
 
@@ -76,9 +76,11 @@ small {
     margin: 1em;
     border: none;
     border-radius: 3px;
-    background: white;
+    background: rgb(230, 230, 230);
+    color: black;
     padding: 5px 10px;
     text-align: center;
+    width: 60px;
 }
 .btn:hover {
     outline: 0;
@@ -129,4 +131,10 @@ small {
     background: -moz-linear-gradient(right, orange, yellow, green, cyan, blue, violet); /* For Firefox 3.6 to 15 */
     background: linear-gradient(to right, orange , yellow, green, cyan, blue, violet); /* Standard syntax (must be last) */
 
+}
+#save {
+    width: 95px;
+}
+#submit {
+    width: 86px;
 }

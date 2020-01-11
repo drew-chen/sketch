@@ -12,14 +12,15 @@
 <body class="grid">
     <header>
         <h1>
-            Sketch and Paint
+            Sketch
         </h1>
     </header>
     <div id="settings" class="grid">
         <div class="shadow">
             <div id="select-buttons" class="grid">
                 <!-- The paint button is selected by default. -->
-                <button id="select-paint" class="btn selected shadow">paint</button>
+                <button id="select-paint" class="btn selected shadow">pen</button>
+                <button id="select-pencil" class="btn shadow">pencil</button>
                 <button id="select-erase" class="btn shadow">erase</button>
             </div>
             <form id="paint-form">
@@ -45,7 +46,7 @@
     </div>
     <table id="canvas" class="shadow"></table>
     <footer>
-        <button id="save" class="btn shadow-small">save as png</button>
+        <button id="save" class="btn shadow">save as png</button>
     </footer>
 </body>
 <script src="libraries/html2canvas.min.js"></script>

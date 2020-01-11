@@ -1,7 +1,12 @@
+/** Color of painted canvas blocks. */
 let paintColor = "red";
+/** Color of canvas blocks before painting. */
 let backgroundColor = "white";
+/** Number of squares per side. */
 let canvasSize = 10;
+/** Whether or not the cursor erases or paints. */
 let eraser = false;
+/** Whether or not the cursor can erase or paint. */
 let isPainting = false;
 
 /**
