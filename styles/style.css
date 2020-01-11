@@ -6,7 +6,6 @@ body {
     height: 95vh;
     margin: 10px;
     background: #f9f9f9;
-    outline: 0;
 }
 header {
     grid-row: 1;
@@ -68,7 +67,7 @@ small {
 }
 #settings > div {
     background: white;
-    border-radius: 5px;
+    border-radius: 8px;
 }
 
 .btn {
@@ -83,12 +82,8 @@ small {
     width: 60px;
 }
 .btn:hover {
-    outline: 0;
     cursor: pointer;
     filter: brightness(90%)
-}
-.btn:focus,.btn:active {
-    outline: 0;
 }
 
 .selected {

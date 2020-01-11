@@ -1,6 +1,6 @@
-/** Color of painted canvas blocks. */
-let paintColor = "red";
-/** Color of canvas blocks before painting. */
+/** Color of painted canvas blocks. Defaults to black. */
+let paintColor = "black";
+/** Color of canvas blocks before painting. Defaults to white. */
 let backgroundColor = "white";
 /** Number of squares per side. */
 let canvasSize = 10;
@@ -8,10 +8,10 @@ let canvasSize = 10;
 let eraser = false;
 /** Whether or not the cursor can erase or paint. */
 let isPainting = false;
+/** Whether or not the pencil is in use */
+let pencil = false;
 
-/**
- * Constructs a paintable block.
- */
+/** Constructs a paintable block. */
 function createCanvasBlock() {
     let canvasBlock = document.createElement("td");
     return canvasBlock;
@@ -61,11 +61,20 @@ function createCanvas() {
 function getRandomColor() {
     return '#'+(Math.random()*0xFFFFFF|0).toString(16);
 }
-/** Paints or erases a canvas box. */
+/** Intensifies color of pencil painted blocks by 10%. */
+function darken(block) {
+    if (block.style.backgroundColor.localeCompare(backgroundColor) == 0) {
+        block.style.backgroundColor = paintColor;
+        block.style.opacity = 0.1;
+    } else if (block.style.opacity < 1) {
+        block.style.opacity = Number(block.style.opacity) + 0.1;
+    }
+}
+/** Paints (with pencil or pen) or erases a canvas box. */
 function paint() {
     if (isPainting) {
         if (eraser) {
-            if (paintColor.localeCompare("rainbow") == 0) {
+            if (backgroundColor.localeCompare("rainbow") == 0) {
                 this.classList.add("rainbow");
             } else {
                 this.style.backgroundColor = backgroundColor;
@@ -73,10 +82,15 @@ function paint() {
         } else {
             this.classList.remove("rainbow");
             if (paintColor.localeCompare("rainbow") == 0) {
-                this.style.backgroundColor = getRandomColor();
+                this.style.backgroundColor = getRandomColor();      
             } else { 
                 this.style.backgroundColor = paintColor;
             }
+        }
+        if (pencil) {
+            darken(this);
+        } else {
+            this.style.opacity = 1;
         }
     }
 }
@@ -93,28 +107,20 @@ function isColor(colorStr) {
     tmp.color = colorStr;
     return tmp.color == colorStr;
 }
-/** 
- * Set global variables representing to values in settings form. 
- * If any setting has been changed, returns true. 
-*/
+/** Set global variables representing to values in settings form. */
 function setSettings() {
     let newCanvasSize = document.getElementById("resolution").value;
-    let valid = false;
     if (!isNaN(newCanvasSize) && newCanvasSize >= 2 && newCanvasSize <= 150) {
         canvasSize = newCanvasSize;
-        valid = true;
     }
     let newPColor = document.getElementById("paint-color").value;
     if (newPColor && isColor(newPColor)) {
         paintColor = newPColor;
-        valid = true;
     }
     let newBgColor = document.getElementById("background-color").value;
     if (newBgColor && isColor(newBgColor)) {
         backgroundColor = newBgColor;
-        valid = true;
     }
-    return valid;
 }
 /** Preview colors of settings. */
 function updatePreview() {
@@ -146,29 +152,43 @@ function createSettings() {
     paintForm.onsubmit = () => false;
 }
 /**
- * Turns off eraser and sets only the paint button as selected.
+ * Adds styling to show that it is selected. Deselects every other button.
  * 
- * @param {object} eraserBtn The eraser button to be unselected.
+ * @param {object} selectedBtn The button to be selected;
  */
-function selectPaintButton(eraserBtn) {
+function makeSelected(selectedBtn) {
+    document.querySelectorAll(".paint").forEach(btn => {
+        if (btn !== selectedBtn) {
+            btn.classList.remove("selected");
+        }
+        selectedBtn.classList.add("selected");
+    });
+}
+/** Turns off eraser and sets only the pen as selected. */
+function selectPenButton() {
     return function () {
         eraser = false;
-        this.classList.add("selected");
-        eraserBtn.classList.remove("selected");
+        pencil = false;
+        makeSelected(this);
     };
 }
-/**
- * Turns on the eraser and sets only the eraser button as selected.
- * 
- * @param {object} paintBtn The paint button to be unselected.
- */
-function selectEraseButton(paintBtn) {
+/** Turns off the eraser and sets only the pencil as selected.*/
+function selectPencilButton() {
+    return function () {
+        eraser = false;
+        pencil = true;
+        makeSelected(this);      
+    };
+}
+/** Turns on the eraser and sets only the eraser as selected. */
+function selectEraseButton() {
     return function () {
         eraser = true;
-        this.classList.add("selected");
-        paintBtn.classList.remove("selected");
+        pencil = false;
+        makeSelected(this);
     };
 }
+/** Set canvas background and size. */
 function submitSettings() {
     setSettings();
     updateCanvas();
@@ -180,16 +200,19 @@ function save() {
         window.open(base64image , "_blank");
     });   
 }
+/** Set up canvas and attach event listeners. */
 let canvas = createCanvas();
 createSettings();
 updatePreview();
 document.body.appendChild(canvas);
 let submitSettingsButton = document.getElementById("submit");
 submitSettingsButton.onclick = submitSettings;
-let paintButton = document.getElementById("select-paint");
+let penButton = document.getElementById("select-pen");
+let pencilButton = document.getElementById("select-pencil");
 let eraserButton = document.getElementById("select-erase");
-paintButton.onclick = selectPaintButton(eraserButton);
-eraserButton.onclick = selectEraseButton(paintButton);
+penButton.onclick = selectPenButton();
+pencilButton.onclick = selectPencilButton();
+eraserButton.onclick = selectEraseButton();
 let saveButton = document.getElementById("save");
 saveButton.onclick = save;
 
