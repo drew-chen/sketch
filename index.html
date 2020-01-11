@@ -14,11 +14,11 @@
         </h1>
     </header>
     <div id="settings" class="grid">
-        <div>
+        <div class="shadow-medium">
             <div id="select-buttons" class="grid">
                 <!-- The paint button is selected by default. -->
-                <button id="select-paint" class="btn selected">Paint</button>
-                <button id="select-erase" class="btn">Erase</button>
+                <button id="select-paint" class="btn selected shadow-small">Paint</button>
+                <button id="select-erase" class="btn shadow-small">Erase</button>
             </div>
             <form id="paint-form">
                 <div id="paint-preview" class="color-preview"></div>
@@ -26,7 +26,7 @@
                 <input type="text" id="paint-color" placeholder="CSS color value">
             </form>
         </div>
-        <div>
+        <div class="shadow-medium">
             <form id="canvas-form">
                 <label>canvas size</label>
                 <input type="number" id="resolution" 
@@ -39,9 +39,9 @@
             </form>
         </div>
     </div>
-    <table id="canvas"></table>
+    <table id="canvas" class="shadow-large"></table>
     <footer>
-        <button id="save" class="btn">save as png</button>
+        <button id="save" class="btn shadow-small">save as png</button>
     </footer>
 </body>
 <script src="libraries/html2canvas.min.js"></script>
