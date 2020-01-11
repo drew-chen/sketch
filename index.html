@@ -14,11 +14,11 @@
         </h1>
     </header>
     <div id="settings" class="grid">
-        <div class="shadow-medium">
+        <div class="shadow">
             <div id="select-buttons" class="grid">
                 <!-- The paint button is selected by default. -->
-                <button id="select-paint" class="btn selected shadow-small">Paint</button>
-                <button id="select-erase" class="btn shadow-small">Erase</button>
+                <button id="select-paint" class="btn selected shadow">paint</button>
+                <button id="select-erase" class="btn shadow">erase</button>
             </div>
             <form id="paint-form">
                 <div id="paint-preview" class="color-preview"></div>
@@ -26,7 +26,7 @@
                 <input type="text" id="paint-color" placeholder="CSS color value">
             </form>
         </div>
-        <div class="shadow-medium">
+        <div class="shadow">
             <form id="canvas-form">
                 <label>canvas size</label>
                 <input type="number" id="resolution" 
@@ -35,11 +35,11 @@
                 <label>background color</label>
                 <input type="text" id="background-color" 
                 placeholder="CSS color value">
-                <input type="button" id="submit" class="btn" value="reset canvas">
+                <input type="button" id="submit" class="btn shadow" value="reset canvas">
             </form>
         </div>
     </div>
-    <table id="canvas" class="shadow-large"></table>
+    <table id="canvas" class="shadow"></table>
     <footer>
         <button id="save" class="btn shadow-small">save as png</button>
     </footer>
