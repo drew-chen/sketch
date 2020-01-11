@@ -6,8 +6,8 @@ body {
     height: 95vh;
     margin: 10px;
     background: #f9f9f9;
+    outline: 0;
 }
-
 header {
     grid-row: 1;
     grid-column: 1/4;
@@ -28,9 +28,11 @@ form {
 }
 
 input {
+    font-family: 'Roboto', sans-serif;
     width: 15em;
     border-style: none none solid none;
     text-align: center;
+    color: darkgray;
 }
 label {
     font-size: 14px;
@@ -44,6 +46,13 @@ table, tr, td {
     user-select: none;
 }
 
+small {
+    position: relative;
+    bottom: 20px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 13px;
+    color: darkgray;
+}
 .grid {
     display: grid;
     justify-items: center;
@@ -60,11 +69,15 @@ table, tr, td {
     margin: 10px;
 }
 #settings > div {
-    background: white;
+    background: #fefefe;
     border-radius: 5px;
 }
 
 .btn {
+
+
+    font-family: 'Roboto', sans-serif;
+
     margin: 1em;
     border: none;
     border-radius: 3px;
@@ -73,12 +86,12 @@ table, tr, td {
     text-align: center;
 }
 .btn:hover {
+    outline: 0;
     cursor: pointer;
     filter: brightness(90%)
 }
-.btn:focus > * {
-    outline: none;
-    border: none;
+.btn:focus,.btn:active {
+    outline: 0;
 }
 
 .selected {
