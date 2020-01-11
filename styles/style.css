@@ -30,6 +30,7 @@ form {
 input {
     width: 15em;
     border-style: none none solid none;
+    text-align: center;
 }
 label {
     font-size: 14px;
@@ -65,16 +66,28 @@ table, tr, td {
 
 .btn {
     margin: 1em;
-    border: 1 solid black;
-    border-radius: 5px;
+    border: none;
+    border-radius: 3px;
     background: white;
+    padding: 5px 10px;
+    text-align: center;
+}
+.btn:hover {
+    cursor: pointer;
+    filter: brightness(90%)
+}
+.btn:focus > * {
+    outline: none;
+    border: none;
 }
 
 .selected {
-    border: 10px solid black;
-    background-color: red;
-    margin: 30px;
+    background-color: lightgreen;
 }
+.selected:hover {
+    filter: none;
+}
+
 
 #select-buttons {
     padding-top: 1em;
@@ -92,7 +105,7 @@ table, tr, td {
     border-spacing: 0;
     table-layout: fixed;
     padding: 0;
-    background-color: transparent;
+    background: transparent;
     width: 720px;
     height: 720px;
 }
