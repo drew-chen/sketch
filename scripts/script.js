@@ -94,19 +94,6 @@ function paint() {
         }
     }
 }
-/**
- * Returns whether the given color is a valid color in CSS.
- * 
- * @param {string} colorStr The CSS color value.
- */
-function isColor(colorStr) {
-    if (colorStr.localeCompare("rainbow") == 0) {
-        return true;
-    }
-    let tmp = new Option().style;
-    tmp.color = colorStr;
-    return tmp.color == colorStr;
-}
 /** Set global variables representing to values in settings form. */
 function setSettings() {
     let newCanvasSize = document.getElementById("resolution").value;
@@ -114,11 +101,11 @@ function setSettings() {
         canvasSize = newCanvasSize;
     }
     let newPColor = document.getElementById("paint-color").value;
-    if (newPColor && isColor(newPColor)) {
+    if (newPColor) {
         paintColor = newPColor;
     }
     let newBgColor = document.getElementById("background-color").value;
-    if (newBgColor && isColor(newBgColor)) {
+    if (newBgColor) {
         backgroundColor = newBgColor;
     }
 }
