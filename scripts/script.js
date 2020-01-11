@@ -122,7 +122,7 @@ function updatePreview() {
         backgroundPreview.classList.add("rainbow");
     } else {
         backgroundPreview.classList.remove("rainbow");
-        backgroundPreview.style.backgroundColor = paintColor;
+        backgroundPreview.style.backgroundColor = backgroundColor;
     }
 }
 /** Set up previews and forms. Previews are updated live with input. */
