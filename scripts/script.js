@@ -36,7 +36,7 @@ function updateCanvas() {
         row = document.createElement("tr");
         for (let j = 0; j < canvasSize; ++j) {
             canvasBlock = createCanvasBlock();
-            if (backgroundColor.localeCompare("rainbow") == 0) {
+            if (backgroundColor === "rainbow") {
                 canvasBlock.classList.add("rainbow");
             } else {
                 canvasBlock.classList.remove("rainbow");
@@ -61,9 +61,18 @@ function createCanvas() {
 function getRandomColor() {
     return '#'+(Math.random()*0xFFFFFF|0).toString(16);
 }
-/** Intensifies color of pencil painted blocks by 10%. */
-function darken(block) {
-    if (block.style.backgroundColor.localeCompare(backgroundColor) == 0) {
+/**
+ * Sets a block's color to a lighter version of the paint color. Each 
+ * succsive call on the same block intensifies color of pencil painted 
+ * blocks by 10%. 
+ * 
+ * @param {object} block The block to be colored by the pencil.
+ */
+function pencilColor(block) {
+    if (paintColor === backgroundColor) {
+        return;
+    }
+    if (block.style.backgroundColor === backgroundColor) {
         block.style.backgroundColor = paintColor;
         block.style.opacity = 0.1;
     } else if (block.style.opacity < 1) {
@@ -74,21 +83,21 @@ function darken(block) {
 function paint() {
     if (isPainting) {
         if (eraser) {
-            if (backgroundColor.localeCompare("rainbow") == 0) {
+            if (backgroundColor === "rainbow") {
                 this.classList.add("rainbow");
             } else {
                 this.style.backgroundColor = backgroundColor;
             }
         } else {
             this.classList.remove("rainbow");
-            if (paintColor.localeCompare("rainbow") == 0) {
+            if (paintColor === "rainbow") {
                 this.style.backgroundColor = getRandomColor();      
             } else { 
                 this.style.backgroundColor = paintColor;
             }
         }
         if (pencil) {
-            darken(this);
+            pencilColor(this);
         } else {
             this.style.opacity = 1;
         }
@@ -137,7 +146,7 @@ function validateColor(colorStr) {
  * paint color.
  * 
  * @param {boolean} isBackground Updates background color if true. Updates paint
- *                             color otherwise.
+ *                               color otherwise.
  */
 function updateColorSetting(isBackground) {
     let colorSettingId;
@@ -157,7 +166,11 @@ function updateColorSetting(isBackground) {
         }
         input.style.borderColor = "inherit";
     } else {
-        input.style.borderColor = "tomato";
+        if (newColor === "") {
+            input.style.borderColor = "inherit";
+        } else {
+            input.style.borderColor = "tomato";
+        }
     }
 }
 /** Set global variables representing to values in settings form. */
@@ -174,13 +187,13 @@ function updatePreview() {
     setSettings();
     let paintPreview = document.getElementById("paint-preview");
     let backgroundPreview = document.getElementById("background-preview");
-    if (paintColor.localeCompare("rainbow") == 0) {
+    if (paintColor === "rainbow") {
         paintPreview.classList.add("rainbow");
     } else {
         paintPreview.classList.remove("rainbow");
         paintPreview.style.backgroundColor = paintColor;
     }
-    if (backgroundColor.localeCompare("rainbow") == 0) {
+    if (backgroundColor === "rainbow") {
         backgroundPreview.classList.add("rainbow");
     } else {
         backgroundPreview.classList.remove("rainbow");
@@ -247,7 +260,7 @@ function save() {
         window.open(base64image , "_blank");
     });   
 }
-/** Set up canvas and attach event listeners. */
+/** Set up canvas and attaches event listeners. */
 let canvas = createCanvas();
 createSettings();
 updatePreview();
