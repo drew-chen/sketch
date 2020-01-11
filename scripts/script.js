@@ -31,7 +31,12 @@ function updateCanvas() {
         row = document.createElement("tr");
         for (let j = 0; j < canvasSize; ++j) {
             canvasBlock = createCanvasBlock();
-            canvasBlock.style.backgroundColor = backgroundColor;
+            if (backgroundColor.localeCompare("rainbow") == 0) {
+                canvasBlock.classList.add("rainbow");
+            } else {
+                canvasBlock.classList.remove("rainbow");
+                canvasBlock.style.backgroundColor = backgroundColor;
+            }
             canvasBlock.addEventListener("mouseover", paint)
             row.appendChild(canvasBlock);
         }
@@ -47,13 +52,22 @@ function createCanvas() {
     canvas.addEventListener("mouseleave", () => isPainting = false);
     return canvas;
 }
+/** Generates random colors. */
+function getRandomColor() {
+    return '#'+(Math.random()*0xFFFFFF|0).toString(16);
+}
 /** Paints or erases a canvas box. */
 function paint() {
     if (isPainting) {
         if (eraser) {
             this.style.backgroundColor = backgroundColor;
         } else {
-            this.style.backgroundColor = paintColor;
+            this.classList.remove("rainbow");
+            if (paintColor.localeCompare("rainbow") == 0) {
+                this.style.backgroundColor = getRandomColor();
+            } else { 
+                this.style.backgroundColor = paintColor;
+            }
         }
     }
 }
@@ -63,6 +77,9 @@ function paint() {
  * @param {string} colorStr The CSS color value.
  */
 function isColor(colorStr) {
+    if (colorStr.localeCompare("rainbow") == 0) {
+        return true;
+    }
     let tmp = new Option().style;
     tmp.color = colorStr;
     return tmp.color == colorStr;
@@ -95,8 +112,18 @@ function updatePreview() {
     setSettings();
     let paintPreview = document.getElementById("paint-preview");
     let backgroundPreview = document.getElementById("background-preview");
-    paintPreview.style.backgroundColor = paintColor;
-    backgroundPreview.style.backgroundColor = backgroundColor;
+    if (paintColor.localeCompare("rainbow") == 0) {
+        paintPreview.classList.add("rainbow");
+    } else {
+        paintPreview.classList.remove("rainbow");
+        paintPreview.style.backgroundColor = paintColor;
+    }
+    if (backgroundColor.localeCompare("rainbow") == 0) {
+        backgroundPreview.classList.add("rainbow");
+    } else {
+        backgroundPreview.classList.remove("rainbow");
+        backgroundPreview.style.backgroundColor = paintColor;
+    }
 }
 /** Set up previews and forms. Previews are updated live with input. */
 function createSettings() {

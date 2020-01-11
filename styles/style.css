@@ -47,8 +47,6 @@ table, tr, td {
 }
 
 small {
-    position: relative;
-    bottom: 20px;
     font-family: 'Roboto', sans-serif;
     font-size: 13px;
     color: darkgray;
@@ -74,10 +72,7 @@ small {
 }
 
 .btn {
-
-
     font-family: 'Roboto', sans-serif;
-
     margin: 1em;
     border: none;
     border-radius: 3px;
@@ -126,4 +121,12 @@ small {
     box-shadow:
         0  5px 10px rgba(154,160,185,0.05),
         0 15px 40px rgba(166,173,201,0.2);
+}
+.rainbow {
+    background: red; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(left, orange , yellow, green, cyan, blue, violet); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(right, orange, yellow, green, cyan, blue, violet); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(right, orange, yellow, green, cyan, blue, violet); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to right, orange , yellow, green, cyan, blue, violet); /* Standard syntax (must be last) */
+
 }
