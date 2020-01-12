@@ -39,16 +39,22 @@ ol {
 li {
     display: block;
     margin: 7px;
-
+}
+ol {
+    padding-left: 15px;
+}
+ul {
+    padding-left: 15px;
+}
+ul > ul {
+    padding-left: 20px;
 }
 ol > li::before {
     content: counter(item) " "; 
     counter-increment: item;
-    text-indent: 10px;
 }
 ul > ul > li {
     list-style-type: circle;
-    margin-left: -6px;
     margin: 0;
     display: list-item;
 }
@@ -89,7 +95,7 @@ small {
     padding: 1em;
 }
 
-#settings {
+#left-col {
     grid-row-start: 2;
     grid-row-end: 3;
     grid-gap: 1em;
@@ -97,13 +103,13 @@ small {
     justify-self: right;
     margin: 0;
 }
-#settings > div, #instructions > div {
+#left-col > div, #right-col > div {
     background: white;
     border-radius: 8px;
     padding: 1em;
     justify-items: center;
 }
-#instructions {
+#right-col {
     grid-row-start: 2;
     grid-gap: 1em;
     text-align: start;
@@ -112,8 +118,9 @@ small {
     justify-items: stretch;
     grid-column-start: 3;
 }
-#instructions > h2 {
-    text-align: center;
+
+#instructions {
+    margin-left: 12px;
 }
 .btn {
     margin: 1em;
