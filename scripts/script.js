@@ -90,16 +90,16 @@ function paint() {
             }
         } else {
             this.classList.remove("rainbow");
+            if (pencil) {
+                pencilColor(this);
+            } else {
+                this.style.opacity = 1;
+            }
             if (paintColor === "rainbow") {
-                this.style.backgroundColor = getRandomColor();      
+                this.style.backgroundColor = getRandomColor();
             } else { 
                 this.style.backgroundColor = paintColor;
             }
-        }
-        if (pencil) {
-            pencilColor(this);
-        } else {
-            this.style.opacity = 1;
         }
     }
 }
