@@ -1,6 +1,9 @@
 # Sketch
 
-A simple canvas to draw and color on.
+A fun place to draw and color on.
+
+
+![sunset](images/sunset.png)
 
 ### Features
 
