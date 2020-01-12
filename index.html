@@ -4,17 +4,12 @@
     <meta charset="UTF-8">
     <title>Sketch</title>
     <link rel="stylesheet" href="styles/style.css">
-    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap" 
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" 
     rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" 
     rel="stylesheet">
 </head>
 <body class="grid">
-    <header>
-        <h1>
-            Sketch
-        </h1>
-    </header>
     <div id="settings" class="grid">
         <div class="shadow">
             <h2>Paint</h2>
@@ -45,39 +40,45 @@
         </div>
     </div>
     <table id="canvas" class="shadow"></table>
-    <!-- todo -->
-    <div id="instructions" class="shadow">
-        <h2>Instructions</h2>
-        
-        <h3>Painting</h3>
-        <ol>
-            <li>Select pen, pencil, or eraser</li>
-            <li>
-                Choose a paint color
-                <ul>
-                    <li>ex)</li>
+    <div id="instructions" class="grid">
+        <div class="shadow">
+            <h1>
+                Sketch
+            </h1>
+        </div>
+        <div class="shadow">
+            <h2>Instructions</h2>  
+            <h3>Painting</h3>
+            <ol>
+                <li>Select pen, pencil, or eraser</li>
+                <li>
+                    Choose a paint color
                     <ul>
-                        <li>rainbow</li>
-                        <li>#ADD8E6</li>
-                        <li>pink</li>
-                        <li>rgb(1,80,99)</li>
+                        <li>ex)</li>
+                        <ul>
+                            <li>rainbow</li>
+                            <li>#ADD8E6</li>
+                            <li>pink</li>
+                            <li>rgb(1,80,99)</li>
+                        </ul>   
                     </ul>   
-                </ul>   
-            </li>  
-            <li>Click and drag across canvas</li>
-        </ol>
-        <h3>Changing the canvas</h3>
-        <ol>
-            <li>Choose the number of squares per side*</li>
-            <li>Choose a background color</li>
-            <li>Click "set canvas" when ready</li>
-        </ol>    
-
+                </li>  
+                <li>Click and drag across canvas</li>
+            </ol>
+            <h3>Changing the canvas</h3>
+            <ol>
+                <li>Choose the size</li>
+                <li>Choose a background color</li>
+                <li>Click "set canvas" when ready</li>
+            </ol>    
+        </div>
+        <div class="shadow grid">
+            <button id="save" class="btn shadow">save as png</button>
+        </div>
   
     </div>
 
     <footer>
-        <button id="save" class="btn shadow">save as png</button>
     </footer>
 </body>
 <script src="libraries/html2canvas.min.js"></script>
