@@ -86,6 +86,7 @@ function paint() {
             if (backgroundColor === "rainbow") {
                 this.classList.add("rainbow");
             } else {
+                this.style.opacity = 1;
                 this.style.backgroundColor = backgroundColor;
             }
         } else {

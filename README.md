@@ -6,7 +6,7 @@ A simple canvas to draw and color on.
 
 * Use a pen or pencil as your brush
 * A pen creates a solid line while a pencil can shade
-* Paint with a rainbow!
+* Paint with in rainbow colors!
 * Paint with any valid CSS color
 * Adjust resolution and background colors
 * Save your creation to share with others
