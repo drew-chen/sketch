@@ -164,10 +164,10 @@ function updateColorSetting(isBackground) {
         } else {
             paintColor = newColor;
         }
-        input.style.borderColor = "inherit";
+        input.style.borderColor = "darkgray";
     } else {
         if (newColor === "") {
-            input.style.borderColor = "inherit";
+            input.style.borderColor = "darkgray";
         } else {
             input.style.borderColor = "tomato";
         }
@@ -175,9 +175,16 @@ function updateColorSetting(isBackground) {
 }
 /** Set global variables representing to values in settings form. */
 function setSettings() {
-    let newCanvasSize = document.getElementById("resolution").value;
+    let currentCanvas = document.getElementById("resolution")
+    let newCanvasSize = currentCanvas.value;
     if (!isNaN(newCanvasSize) && newCanvasSize >= 2 && newCanvasSize <= 150) {
         canvasSize = newCanvasSize;
+    } else {
+        if (newCanvasSize === "") {
+            currentCanvas.style.borderColor = "darkgray";
+        } else {
+            currentCanvas.style.borderColor = "tomato";
+        }
     }
     updateColorSetting(true);
     updateColorSetting(false);
