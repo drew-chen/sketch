@@ -27,17 +27,39 @@ form {
 }
 
 h2 {
-    font-size: 1em;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+ol {
+    font-family: 'Roboto', sans-serif;
+    counter-reset: item;
+}
+li {
+    display: block;
+}
+ol > li::before {
+    content: counter(item) " "; 
+    counter-increment: item;
+    text-indent: 10px;
+}
+ul > ul > li {
+    list-style-type: circle;
+    margin-left: -6px;
+    margin: 0;
+    display: list-item;
 }
 input {
     font-family: 'Roboto', sans-serif;
-    width: 15em;
+    width: 10rem;
     border-style: none none solid none;
     text-align: center;
     color: darkgray;
+    background-color: white;
 }
-label {
-    font-size: 14px;
+label, h3 {
+    font-size: 0.7rem;
+    margin: 12px;
 }
 
 table, tr, td {
@@ -73,8 +95,14 @@ small {
     border-radius: 8px;
 }
 #instructions {
-    justify-self: left;
     margin: 26px;
+    text-align: start;
+    align-self: center;
+    justify-self: left;
+    width: 360px;
+}
+#instructions > h2 {
+    text-align: center;
 }
 .btn {
     font-family: 'Roboto', sans-serif;
@@ -99,10 +127,6 @@ small {
     filter: none;
 }
 
-
-#select-buttons {
-    padding-top: 1em;
-}
 .color-preview {
     width: 10em;
     height: 2em;
@@ -117,8 +141,8 @@ small {
     table-layout: fixed;
     padding: 0;
     background: transparent;
-    width: 720px;
-    height: 720px;
+    width: 820px;
+    height: 820px;
 }
 .shadow {
     box-shadow:
