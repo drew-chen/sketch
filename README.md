@@ -26,12 +26,7 @@ A fun place to draw and color on.
 
 * Viola! Enjoy painting :)
 
-
-End with an example of getting some data out of the system or using it for a little demo
-
 ### Built With
 
-* HTML
-* CSS
-* JavaScript
+* HTML, CSS, and vanilla JavaScript
 * [html2canvas](https://github.com/niklasvh/html2canvas) Used to save canvas to png
