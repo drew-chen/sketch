@@ -8,7 +8,18 @@ body {
     height: 95vh;
     margin: 10px;
     background: #f9f9f9;
+    color: #333;
 }
+
+a {
+    text-decoration: none;
+    color: #333;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
 footer {
     grid-row: 3;
     grid-column: 1/4;
@@ -36,28 +47,35 @@ h2 {
 ol {
     counter-reset: item;
 }
+
 li {
     display: block;
     margin: 7px;
 }
+
 ol {
     padding-left: 15px;
 }
+
 ul {
     padding-left: 15px;
 }
+
 ul > ul {
     padding-left: 20px;
 }
+
 ol > li::before {
     content: counter(item) " "; 
     counter-increment: item;
 }
+
 ul > ul > li {
     list-style-type: circle;
     margin: 0;
     display: list-item;
 }
+
 input {
     width: 10rem;
     border-style: none none solid none;
@@ -69,6 +87,7 @@ input {
     -moz-appearance: textfield;
     appearance: textfield;
 }
+
 label, h3 {
     font-size: 1rem;
     margin: 12px;
@@ -103,12 +122,14 @@ small {
     justify-self: right;
     margin: 0;
 }
+
 #left-col > div, #right-col > div {
     background: white;
     border-radius: 8px;
     padding: 1em;
     justify-items: center;
 }
+
 #right-col {
     grid-row-start: 2;
     grid-gap: 1em;
@@ -122,16 +143,18 @@ small {
 #instructions {
     margin-left: 12px;
 }
+
 .btn {
     margin: 1em;
     border: none;
     border-radius: 3px;
     background: rgb(231, 231, 231);
-    color: black;
+    color: #333;
     padding: 5px 10px;
     text-align: center;
     width: 60px;
 }
+
 .btn:hover {
     cursor: pointer;
     filter: brightness(90%)
@@ -151,6 +174,7 @@ small {
     border: 1px solid lightgray;
     border-radius: 5px;
 }
+
 #canvas {
     grid-row: 2;
     grid-column: 2/3;
@@ -163,22 +187,25 @@ small {
     height: 720px;
     align-self: center;
 }
+
 .shadow {
     box-shadow:
         0  5px 10px rgba(154,160,185,0.05),
         0 15px 40px rgba(166,173,201,0.2);
 }
+
 .rainbow {
     background: red; /* For browsers that do not support gradients */
     background: -webkit-linear-gradient(left, orange , yellow, green, cyan, blue, violet); /* For Safari 5.1 to 6.0 */
     background: -o-linear-gradient(right, orange, yellow, green, cyan, blue, violet); /* For Opera 11.1 to 12.0 */
     background: -moz-linear-gradient(right, orange, yellow, green, cyan, blue, violet); /* For Firefox 3.6 to 15 */
     background: linear-gradient(to right, orange , yellow, green, cyan, blue, violet); /* Standard syntax (must be last) */
-
 }
+
 #save {
     width: 100px;
 }
+
 #submit {
     width: 100px;
 }
