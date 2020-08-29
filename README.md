@@ -1,6 +1,6 @@
 # Sketch
 
-A fun place to draw and color on.
+A fun place to draw and color on ([demo](https://drew-chen.github.io/sketch/)).
 
 ![sunset](images/sunset.png)
 
